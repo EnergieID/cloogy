@@ -6,7 +6,7 @@ from .unit import Unit
 from .tag import Tag
 
 __title__ = "cloogy"
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __author__ = "EnergieID.be"
 __license__ = "MIT"
 
@@ -276,6 +276,8 @@ class CloogyClient:
             instants_type=instants_type
         )
         df = pd.DataFrame.from_records(cons)
+        if df.empty:
+            return df
         df.Date = pd.to_datetime(df.Date, unit='ms', utc=True)
         return df
 
