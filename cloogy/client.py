@@ -6,7 +6,7 @@ from .unit import Unit
 from .tag import Tag
 
 __title__ = "cloogy"
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 __author__ = "EnergieID.be"
 __license__ = "MIT"
 
@@ -310,6 +310,8 @@ class CloogyClient:
             end=end,
             instants_type=instants_type
         )
+        if df.empty:
+            return df
         df.set_index(['TagId', 'Date'], inplace=True)
         df = df[metric].unstack().T
         df.index.name = None
